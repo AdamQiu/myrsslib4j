@@ -20,7 +20,6 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-
 /**
  * RSS Parser.
  * <blockquote>
@@ -81,8 +80,13 @@ public class RSSParser {
       
       URLConnection con = u.openConnection();
       
-      //由于服务器屏蔽java作为客户端访问rss，所以设置User-Agent
+      //-----------------------------
+      //添加时间：2013-08-14 21:00:17
+      //人员：@龙轩
+      //博客：http://blog.csdn.net/xiaoxian8023
+      //添加内容：由于服务器屏蔽java作为客户端访问rss，所以设置User-Agent
       con.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+      //-----------------------------
 
       con.setReadTimeout(10000);
 	  String charset = Charset.guess(ur);

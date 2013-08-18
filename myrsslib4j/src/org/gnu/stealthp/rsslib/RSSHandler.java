@@ -141,13 +141,13 @@ public class RSSHandler extends DefaultHandler{
       itm = new RSSItem();
       processItemAboutAttribute(attributes);
     }
-
+    
     if (tagIsEqual(qName,IMAGE_TAG)){
       reading_image = true;
       reading_chan  = false;
       img = new RSSImage();
     }
-
+    
     if (tagIsEqual(qName,SEQ_TAG)){
       reading_seq = true;
       seq = new RSSSequence();
@@ -167,7 +167,6 @@ public class RSSHandler extends DefaultHandler{
      sy = new RSSSyndicationModule();
 
     current_tag = qName;
-
   }
 
   /**
@@ -208,11 +207,25 @@ public class RSSHandler extends DefaultHandler{
 
     if (tagIsEqual(qName,ITEM_TAG)){
       reading_item = false;
+      //-----------------------------------------
+      //添加时间：2013-08-14 21:00:17
+      //人员：@龙轩
+      //博客：http://blog.csdn.net/xiaoxian8023
+      //添加内容：重新允许解析channel
+      reading_chan = true;
+      //添加结束---------------------------------
       chan.addItem(itm);
     }
 
     if (tagIsEqual(qName,IMAGE_TAG)){
       reading_image = false;
+    //-----------------------------------------
+      //添加时间：2013-08-14 21:00:17
+      //人员：@龙轩
+      //博客：http://blog.csdn.net/xiaoxian8023
+      //添加内容：重新允许解析channel
+      reading_chan = true;
+      //添加结束---------------------------------
       chan.setRSSImage(img);
     }
 
@@ -224,6 +237,13 @@ public class RSSHandler extends DefaultHandler{
 
     if (tagIsEqual(qName,TEXTINPUT_TAG)){
       reading_input = false;
+    //-----------------------------------------
+      //添加时间：2013-08-14 21:00:17
+      //人员：@龙轩
+      //博客：http://blog.csdn.net/xiaoxian8023
+      //添加内容：重新允许解析channel
+      reading_chan = true;
+      //添加结束---------------------------------
       chan.setRSSTextInput(input);
     }
 
@@ -305,6 +325,7 @@ public class RSSHandler extends DefaultHandler{
        processDoublinCoreTags(qName,data,input);
 
   }
+  
 
   /**
    * Receive notification when parse are scannering an Item
@@ -432,7 +453,7 @@ public class RSSHandler extends DefaultHandler{
     itm.setAboutAttribute(res);
 
   }
-
+  
   /**
    * Receive notification when parse are scannering a Chan attribute
    * @param a the attribute

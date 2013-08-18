@@ -1,6 +1,8 @@
 //$Id: RSSObject.java,v 1.6 2004/03/25 10:09:10 taganaka Exp $
 package org.gnu.stealthp.rsslib;
 import java.util.Hashtable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Handler for all common informations about rss elements.
@@ -115,6 +117,36 @@ public abstract class RSSObject {
   public String getDescription() {
     return this.description;
   }
+  
+  //-----------------------------------
+  //添加时间：2013-08-14 19:32:15
+  //人员：@龙轩
+  //添加内容：添加getSummary()方法，返回文章摘要信息
+  /**
+   * Get the element's summary
+   * @return the summary
+   */
+  public String getSummary(){
+
+		String summary = getDescription();
+		if (summary.length() >= 300) {
+			summary = summary.substring(0, 300);
+		}
+		
+		String regEx_html = "\\s|<[^>]+>|&\\w{1,5};"; // 定义HTML标签和特殊字符的正则表达式
+
+		Pattern pattern = Pattern.compile(regEx_html,Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(summary);
+		summary = matcher.replaceAll(""); // 过滤script标签
+
+		if (summary.length() >= 100) {
+			summary = summary.substring(0, 100);
+		}
+		summary = summary + "...";
+
+		return summary;
+  }
+  //添加结束-----------------------------------------------
 
   /**
    * Get the Roubin Core object from the RSS object
@@ -157,4 +189,5 @@ public abstract class RSSObject {
    * @return An information about element
    */
   public abstract String toString();
+  
 }

@@ -59,13 +59,19 @@ public class Charset {
 	}
 	//judge from url  
 	public static String guess(URL url) throws IOException {
-//		InputStream in = url.openStream();
-		 URLConnection con = url.openConnection();
-	      
-	      //由于服务器屏蔽java作为客户端访问rss，所以设置User-Agent
-	      con.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+		
+		//-----------------------------
+		//修改时间：2013-08-14 21:00:17
+		//人员：@龙轩
+		//博客：http://blog.csdn.net/xiaoxian8023
+		//修改内容：注释InputStream，创建URLConnection，设置User-Agent，通过URLConnection对象创建InputStream
+		
+		//InputStream in = url.openStream();
+		URLConnection con = url.openConnection();
+	    con.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+	    InputStream in = con.getInputStream();
+	 	//-----------------------------
 
-		InputStream in = con.getInputStream();
 		return guess(in);
 	}
 	
