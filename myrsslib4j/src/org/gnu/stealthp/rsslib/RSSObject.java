@@ -126,7 +126,7 @@ public abstract class RSSObject {
    * Get the element's summary
    * @return the summary
    */
-  public String getSummary(){
+  public String getSummary(int length){
 
 		String summary = getDescription();
 		if (summary.length() >= 300) {
@@ -139,12 +139,19 @@ public abstract class RSSObject {
 		Matcher matcher = pattern.matcher(summary);
 		summary = matcher.replaceAll(""); // 过滤script标签
 
-		if (summary.length() >= 100) {
-			summary = summary.substring(0, 100);
+		if (summary.length() >= length) {
+			summary = summary.substring(0, length);
 		}
 		summary = summary + "...";
 
 		return summary;
+  }
+  /**
+   * 获取默认长度的文章摘要
+   * @return
+   */
+  public String getSummary(){
+	  return getSummary(100);
   }
   //添加结束-----------------------------------------------
 
