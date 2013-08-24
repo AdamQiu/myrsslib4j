@@ -53,7 +53,7 @@ public class RssNewsFetcher {
 
 				System.out.println("共有文章数目为：" + ch.getItems().size());
 //				for(i=0;i<ch.getItems().size();i++){
-				for(int j=0;j<1;j++){
+				for(int j=0;j<2;j++){
 					RSSItem item = (RSSItem)ch.getItems().get(j);
 					System.out.println("文章标题：" + item.getTitle());
 					System.out.println("文章摘要：" + item.getSummary());

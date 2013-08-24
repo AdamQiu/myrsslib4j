@@ -133,7 +133,7 @@ public abstract class RSSObject {
 			summary = summary.substring(0, 300);
 		}
 		
-		String regEx_html = "\\s|<[^>]+>|&\\w{1,5};"; // 定义HTML标签和特殊字符的正则表达式
+		String regEx_html = "\\s|<[^>]+>|&\\w{1,5};|&#[0-9]{1,5};"; // 定义HTML标签和特殊字符的正则表达式
 
 		Pattern pattern = Pattern.compile(regEx_html,Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(summary);
